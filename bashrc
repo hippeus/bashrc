@@ -122,3 +122,21 @@ if ! shopt -oq posix; then
     . /etc/bash_completion
   fi
 fi
+
+# support for a vim plugin YouCompleteMe to generate custom ycm config file:
+
+function ycm-setup(){
+  local ycm_config_skeleton="$HOME/.vim/bundle/YouCompleteMe/ycm_config_c++_skeleton/ycm_extra_conf.py"
+  local ycm_file_name=".ycm_extra_conf.py"
+  if [ -f ${ycm_file_name} ]; then
+    vim +/\] ./${ycm_file_name}
+  else
+    cp ${ycm_config_skeleton} ./${ycm_file_name}
+    local cp_status=$?
+    if [ ${cp_status} -eq 0 ]; then
+      vim +/\] ./${ycm_file_name}
+    else
+      echo "Failed to copy ${ycm_file_name} from ${ycm_config_skeleton}"
+    fi
+  fi
+}
