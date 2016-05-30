@@ -60,5 +60,27 @@ set_up_bashrc(){
   fi
 }
 
+setup_global_git_ignore_file(){
+  local ignore_file=".gitignore_global"
+  touch ${HOME}/${ignore_file}
+  echo "*~" >> ${HOME}/${ignore_file}
+  echo "*.swp" >> ${HOME}/${ignore_file}
+  echo ".ycm_extra_conf.py*" >> ${HOME}/${ignore_file}
+  git config --global core.excludesfile ${HOME}/${ignore_file}
+}
+
+enhance_git_global_conf(){
+  setup_global_git_ignore_file
+
+  git config --global diff.tool vimdiff
+  git config --global merge.tool meld
+  git config --global alias.d difftool
+  git config --global alias.last "log -1 HEAD"
+  git config --global alias.unstage "reset HEAD --"
+  git config --global alias.hist "log --pretty=format:\"%h %ad | %s%d [%an]\" --graph --date=short"
+  git config --global alias.logp "log --pretty=format:\"%h %s\" --graph -n 20"
+}
+
 install_git_aware_prompt
+enhance_git_global_conf
 set_up_bashrc
