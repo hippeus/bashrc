@@ -1,0 +1,7 @@
+# cute colors
+RESTORE='\033[0m'
+RED='\033[00;91m'
+GREEN='\033[00;92m'
+YELLOW='\033[00;93m'
+BLUE='\033[00;94m'
+CYAN='\033[00;96m'
