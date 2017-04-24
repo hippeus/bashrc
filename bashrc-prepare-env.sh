@@ -69,6 +69,7 @@ setup_global_git_ignore_file(){
   echo -e "*~" >> ${HOME}/${ignore_file}
   echo -e "*.swp" >> ${HOME}/${ignore_file}
   echo -e ".ycm_extra_conf.py*" >> ${HOME}/${ignore_file}
+  echo -e ".compile_commands.json" >> ${HOME}/${ignore_file}
   git config --global core.excludesfile ${HOME}/${ignore_file}
 }
 
