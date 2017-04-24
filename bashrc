@@ -2,7 +2,13 @@
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
 # for examples
 
-export PATH="~/bin/scripts:$PATH"
+# enable color bash prompt for GTEST framework
+export GTEST_COLOR=1
+
+# setting up the GOPATH for golang
+export GOPATH="$HOME/wrk/gocode"
+
+export PATH="~/bin/scripts:$GOPATH:$PATH"
 
 function trim()
 {
@@ -98,6 +104,7 @@ fi
 alias ll='ls -alF'
 alias la='ls -A'
 alias l='ls -CF'
+alias wrk='cd ~/wrk'
 
 # Add an "alert" alias for long running commands.  Use like so:
 #   sleep 10; alert
