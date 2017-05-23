@@ -62,6 +62,15 @@ set_up_bashrc(){
   fi
 }
 
+provide_bash_profile_if_needed(){
+  test -f $HOME/.bash_profile
+  local success=$?
+  if [ ${success} -ne 0 ]; then
+    echo -e "[${CYAN}INFO${RESTORE}] Lack of bash_profile detected, providing default one ..."
+    ln -sf ${BASH_PREPARE_SCRIPT_DIR}/bash_profile $HOME/.bash_profile
+  fi
+}
+
 setup_global_git_ignore_file(){
   echo -e "[${CYAN}INFO${RESTORE}] ${BLUE} Setting up global git ignore config ... ${RESTORE}"
   local ignore_file=".gitignore_global"
@@ -89,3 +98,4 @@ enhance_git_global_conf(){
 install_git_aware_prompt
 enhance_git_global_conf
 set_up_bashrc
+provide_bash_profile_if_needed
